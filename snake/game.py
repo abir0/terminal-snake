@@ -4,13 +4,6 @@ import curses
 from curses import textpad
 
 
-def init_curses(stdscr):
-    curses.curs_set(0)
-    curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
-    curses.init_pair(2, curses.COLOR_BLACK, curses.COLOR_WHITE)
-    stdscr.nodelay(1)
-    stdscr.timeout(100) # timeout for key press
-
 def make_food(box, snake):
     food = None
     while food is None:
@@ -29,8 +22,19 @@ def update_high_score():
             high_score = 0
     return high_score
 
+def print_score(stdscr, score, sw):
+    msg = 'Score: {}'.format(score)
+    stdscr.attron(curses.color_pair(2))
+    stdscr.addstr(2, sw//2 - len(msg)//2, msg)
+    stdscr.attroff(curses.color_pair(2))
+    stdscr.refresh()
+
 def play_game(stdscr):
-    init_curses(stdscr)
+    curses.curs_set(0)
+    curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
+    curses.init_pair(2, curses.COLOR_BLACK, curses.COLOR_WHITE)
+    stdscr.nodelay(1)
+    stdscr.timeout(100) # timeout for key press
 
     # Create the gamebox
     sh, sw = stdscr.getmaxyx()
@@ -39,10 +43,7 @@ def play_game(stdscr):
 
     # Create score
     score = 0
-    score_msg = 'Score: {}'.format(score)
-    stdscr.attron(curses.color_pair(2))
-    stdscr.addstr(2, 4, score_msg)
-    stdscr.attroff(curses.color_pair(2))
+    print_score(stdscr, score, sw)
 
     # Create the snake with 3 blocks
     snake = [[sh//2, sw//2+1], [sh//2, sw//2], [sh//2, sw//2-1]]
@@ -88,11 +89,7 @@ def play_game(stdscr):
 
             # Update current score
             score += 1
-            score_msg = 'Score: {}'.format(score)
-            stdscr.attron(curses.color_pair(2))
-            stdscr.addstr(2, 4, score_msg)
-            stdscr.attroff(curses.color_pair(2))
-            stdscr.refresh()
+            print_score(stdscr, score, sw)
             continue
         else:
             stdscr.addstr(snake[-1][0], snake[-1][1], ' ')
