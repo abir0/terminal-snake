@@ -23,9 +23,9 @@ def update_high_score():
     return high_score
 
 def print_score(stdscr, score, sw):
-    msg = 'Score: {}'.format(score)
+    msg = ' Score: {} '.format(score)
     stdscr.attron(curses.color_pair(2))
-    stdscr.addstr(2, sw//2 - len(msg)//2, msg)
+    stdscr.addstr(1, sw//2 - len(msg)//2, msg)
     stdscr.attroff(curses.color_pair(2))
     stdscr.refresh()
 
