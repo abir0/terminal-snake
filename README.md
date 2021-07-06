@@ -17,3 +17,7 @@ Enjoy the game!
 <p align='center'>
   <img src='https://i.imgur.com/8J4jBsf.png'>
 </p>
+
+### Resources
+
+- [Python curses tutorial](https://github.com/nikhilkumarsingh/python-curses-tut)
