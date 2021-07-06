@@ -21,3 +21,5 @@ Enjoy the game!
 ### Resources
 
 - [Python curses tutorial](https://github.com/nikhilkumarsingh/python-curses-tut)
+- [Curses documentation](https://docs.python.org/3/howto/curses.html)
+- [“Use curses… don’t swear”](https://www.youtube.com/watch?v=eN1eZtjLEnU)
